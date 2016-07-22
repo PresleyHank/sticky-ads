@@ -47,7 +47,7 @@
     adStates: function() {
 
       // TODO: god I gotta clean all this shit up
-      var OFFSET = 68;
+      var OFFSET = 0;
       var $el = $(this.element)
       var asideHeight = $el.find('.aside-wrap').height();
       var $ads = $el.children('.aside-wrap').children('.ad-wrap'),
@@ -68,13 +68,11 @@
         var $futureTarget = $ads.eq(adNumber + 1),
             $futureAside = $futureTarget.find('aside.right');
       }
-      // console.log(adNumber);
 
       if (adNumber >= 0 && adNumber < $ads.length) {
-        if ($(window).scrollTop() >= ($target.offset().top - OFFSET) && $(window).scrollTop() < ($target.offset().top + $target.height() - $target.find('aside.right').height() - 108)) {
+        if ($(window).scrollTop() >= ($target.offset().top - OFFSET) && $(window).scrollTop() < ($target.offset().top + $target.height() - $target.find('aside.right').height() - 80)) {
           // within ad-wrap where ad should be sticky
           if (!$asideRight.hasClass('sticky')) {
-            // console.log('stuck');
             $('aside.right.sticky').removeClass('sticky');
             $asideRight.addClass('sticky');
           
@@ -88,10 +86,9 @@
           if ($asideRight.hasClass('stopped')) {
             $asideRight.removeClass('stopped');
           }
-        } else if ($(window).scrollTop() >= $target.offset().top + $target.height() - $target.find('aside.right').height() - 108) {
+        } else if ($(window).scrollTop() >= $target.offset().top + $target.height() - $target.find('aside.right').height() - 80) {
           // within ad-wrap where the current ad should be stopped 
           if (!$asideRight.hasClass('stopped')) {
-            // console.log('stopped');
             $('aside.right.stopped').removeClass('stopped');
             $asideRight.addClass('stopped');
           }
@@ -110,11 +107,9 @@
         else {
           // current ad should have no additional classes
           if ($asideRight.hasClass('stopped')) {
-            // console.log('removed - stopped');
             $asideRight.removeClass('stopped');
           }
           if ($asideRight.hasClass('sticky')) {
-            // console.log('removed - sticky');
             $asideRight.removeClass('sticky');
           }
         }
