@@ -1,0 +1,90 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  transition: all .1s ease-out;
+}
+
+a:hover {
+  color: #806da4;
+}
+
+article {
+  position: relative;
+  background: #fff;
+  max-width: 1200px; 
+  margin: auto; 
+  padding: 40px; 
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+aside.right {
+  background: #f6f6f6;
+  padding: 20px;
+  text-align: center; 
+  width: 340px;
+}
+
+aside.right.most-popular-plus-ad {
+  text-align: left;
+}
+
+.most-popular h4 {
+  float: left;
+  margin-top: 0;
+  margin-right: 5px;
+}
+
+.popular-article {
+  clear: both;
+}
+
+.sticky-ads-article {
+  background: #557faa;
+  padding: 80px;
+}
+
+
+
+/* sticky ads */
+
+.ad-wrap {
+  position: relative;
+}
+
+.sticky-ads-engaged > * {
+  width: calc(100% - 380px);
+}
+
+.sticky-ads-engaged > .aside-wrap {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  width: 340px;
+}
+
+aside.right.sticky {
+  position: fixed;
+  top: 68px;
+}
+
+aside.right.stopped {
+  position: absolute;
+  bottom: 0;
+}
