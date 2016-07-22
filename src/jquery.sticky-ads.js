@@ -3,7 +3,7 @@
   var pluginName = "stickyAds",
     defaults = {
       adMargin: "20px",
-      selector: "aside.right"
+      selector: ".ads"
     };
 
   // The actual plugin constructor
@@ -31,6 +31,7 @@
       // you can add more functions like the one below and
       // call them like the example below
       $(this.element).addClass('sticky-ads-engaged');
+      this.testStuff(this.settings.selector)
       this._createAdWrap();
       this.calculateHeights();
       this._actionHandler();
@@ -144,9 +145,10 @@
       // TODO: better element appending with
       //       optional class names.
       var $el = $(this.element);
+
       $el.append('<div class="aside-wrap"></div>');
-      $el.find(this._defaults.selector).detach().prependTo($('.aside-wrap'));
-      $el.find(this._defaults.selector).wrap('<div class="ad-wrap"></div>')
+      $el.find(this.settings.selector).detach().prependTo($('.aside-wrap'));
+      $el.find(this.settings.selector).wrap('<div class="ad-wrap"></div>')
     },
 
     _debounce: function(func, wait, immediate) {

@@ -39,6 +39,7 @@
       // you can add more functions like the one below and
       // call them like the example below
       $(this.element).addClass('sticky-ads-engaged');
+      this.testStuff(this.settings.selector)
       this._createAdWrap();
       this.calculateHeights();
       this._actionHandler();
