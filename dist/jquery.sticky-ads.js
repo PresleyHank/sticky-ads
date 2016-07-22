@@ -11,7 +11,7 @@
   var pluginName = "stickyAds",
     defaults = {
       adMargin: "20px",
-      selector: "aside.right"
+      selector: ".ads"
     };
 
   // The actual plugin constructor
@@ -63,26 +63,26 @@
           adPercent = asideHeight / $ads.length;
       var adNumber = Math.floor(($(window).scrollTop() - $el.offset().top + OFFSET) / adPercent),
           $target = $ads.eq(adNumber),
-          $asideRight = $target.find('aside.right');
+          $asideRight = $target.find(this.settings.selector);
 
 
       if(adNumber >= 0) {
         var $previousTarget = $ads.eq(adNumber - 1),
-            $previousAside = $previousTarget.find('aside.right');
+            $previousAside = $previousTarget.find(this.settings.selector);
       } else if (adNumber === (-1)) {
         var $previousTarget = $ads.eq(0),
-            $previousAside = $previousTarget.find('aside.right');
+            $previousAside = $previousTarget.find(this.settings.selector);
       } 
       if (adNumber < $ads.length) {
         var $futureTarget = $ads.eq(adNumber + 1),
-            $futureAside = $futureTarget.find('aside.right');
+            $futureAside = $futureTarget.find(this.settings.selector);
       }
 
       if (adNumber >= 0 && adNumber < $ads.length) {
-        if ($(window).scrollTop() >= ($target.offset().top - OFFSET) && $(window).scrollTop() < ($target.offset().top + $target.height() - $target.find('aside.right').height() - 80)) {
+        if ($(window).scrollTop() >= ($target.offset().top - OFFSET) && $(window).scrollTop() < ($target.offset().top + $target.height() - $target.find(this.settings.selector).height() - 80)) {
           // within ad-wrap where ad should be sticky
           if (!$asideRight.hasClass('sticky')) {
-            $('aside.right.sticky').removeClass('sticky');
+            $(this.settings.selector + '.sticky').removeClass('sticky');
             $asideRight.addClass('sticky');
           
             // check previous and next ad for correct classes
@@ -95,10 +95,10 @@
           if ($asideRight.hasClass('stopped')) {
             $asideRight.removeClass('stopped');
           }
-        } else if ($(window).scrollTop() >= $target.offset().top + $target.height() - $target.find('aside.right').height() - 80) {
+        } else if ($(window).scrollTop() >= $target.offset().top + $target.height() - $target.find(this.settings.selector).height() - 80) {
           // within ad-wrap where the current ad should be stopped 
           if (!$asideRight.hasClass('stopped')) {
-            $('aside.right.stopped').removeClass('stopped');
+            $(this.settings.selector + '.stopped').removeClass('stopped');
             $asideRight.addClass('stopped');
           }
           if ($asideRight.hasClass('sticky')) {
@@ -153,9 +153,10 @@
       // TODO: better element appending with
       //       optional class names.
       var $el = $(this.element);
+
       $el.append('<div class="aside-wrap"></div>');
-      $el.find(this._defaults.selector).detach().prependTo($('.aside-wrap'));
-      $el.find(this._defaults.selector).wrap('<div class="ad-wrap"></div>')
+      $el.find(this.settings.selector).detach().prependTo($('.aside-wrap'));
+      $el.find(this.settings.selector).wrap('<div class="ad-wrap"></div>')
     },
 
     _debounce: function(func, wait, immediate) {
